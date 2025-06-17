@@ -6,6 +6,7 @@ import {
   RiFileList3Line,
   RiLogoutBoxRLine,
   RiMailSendLine,
+  RiNewsLine,
  
 
 } from "@remixicon/react";
@@ -17,15 +18,10 @@ const navItem = [
     label: "Links",
     items: [
       {
-        label: "Compose Email",
-        href: "/sent-email",
-        icon: <RiMailSendLine size={18} />, 
+        label: "Logs",
+        href: "/logs",
+        icon: <RiNewsLine size={18} />, 
       },
-      {
-        label: "Templates",
-        href: "/email-template",
-        icon: <RiFileList3Line size={18} />, 
-      }
       
     ],
   },

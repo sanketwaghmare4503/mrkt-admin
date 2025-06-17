@@ -45,7 +45,7 @@ export const NoticeProvider = ({ children }: { children: ReactNode }) => {
         variant={type}
         noticeTitle={type.charAt(0).toUpperCase() + type.slice(1)}
         position="top"
-        className="!max-w-[400px]"
+        className="!max-w-[400px] !z-[10000]"
       >
         {message}
       </Notice>
