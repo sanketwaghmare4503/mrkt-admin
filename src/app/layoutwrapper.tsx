@@ -1,8 +1,7 @@
-'use client';
 
-import React, { ReactNode } from 'react';
-import SideBar from './components/SideBar';
-import NavBar from './components/NavBar';
+import React, { ReactNode } from "react";
+import SideBar from "./components/SideBar";
+import NavBar from "./components/NavBar";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -11,11 +10,11 @@ interface AdminLayoutProps {
 export default function LayoutWrapper({ children }: AdminLayoutProps) {
   return (
     <div className="flex h-screen overflow-hidden">
-      <SideBar/>
+      <SideBar />
 
       {/* Main content area */}
       <div className="flex flex-col flex-1 ml-[5.5%]">
-        <NavBar/>
+        <NavBar />
 
         <main className="flex-1 overflow-y-auto  mt-[4.4%]  bg-gray-50">
           {children}

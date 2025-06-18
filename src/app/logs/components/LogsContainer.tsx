@@ -1,27 +1,24 @@
-"use client"
+"use client";
 
 import { getLogCount, getLogsByStatus } from "@/app/actions/singleLogs";
 import { Tab, TabList, TabPanel, TabsContainer } from "@atomos_tech/genesis";
 import { useState } from "react";
-import useSWR from 'swr';
-import { EmailLogsTable } from "./LogTable"; // Import the new component
+import useSWR from "swr";
+import { EmailLogsTable } from "./LogTable"; 
 import { Option } from "@/app/utils/__types";
 import { EVENT_TYPES, recipientOptions, statusOptions } from "@/app/utils/data";
 
-
-
 export default function LogsContainer() {
-    const { data:countData } = useSWR("/logs/get-count", getLogCount);
+  const { data: countData } = useSWR("/logs/get-count", getLogCount);
 
   const [value, setValue] = useState("0");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const [searchQuery, setSearchQuery] = useState("");
-  const [status , setStatus]= useState<Option[]>(statusOptions);
-  const [recipientStatus , setRecipientStatus]= useState<Option[]>(recipientOptions);
+  const [status, setStatus] = useState<Option[]>(statusOptions);
+  const [recipientStatus, setRecipientStatus] =
+    useState<Option[]>(recipientOptions);
 
-
-  
   const handleTabChange = (newValue: string) => {
     setValue(newValue);
     setPage(0);
@@ -29,16 +26,20 @@ export default function LogsContainer() {
   };
 
   const buildApiEndpoint = () => {
-    const baseUrl = `/logs/logs-by-type/${EVENT_TYPES[value]}?status=${status[0].value ||-1}&recipientStatus=${recipientStatus[0].value||-1}&page=${page+1}&limit=${rowsPerPage}`;
+    const baseUrl = `/logs/logs-by-type/${EVENT_TYPES[value]}?status=${
+      status[0].value || -1
+    }&recipientStatus=${recipientStatus[0].value || -1}&page=${
+      page + 1
+    }&limit=${rowsPerPage}`;
     const params = new URLSearchParams();
-    
-    params.append('page', page.toString());
-    params.append('limit', rowsPerPage.toString());
-    
+
+    params.append("page", page.toString());
+    params.append("limit", rowsPerPage.toString());
+
     if (searchQuery.trim()) {
-      params.append('search', searchQuery.trim());
+      params.append("search", searchQuery.trim());
     }
-    
+
     return `${baseUrl}?${params.toString()}`;
   };
 
@@ -49,22 +50,15 @@ export default function LogsContainer() {
     () => getLogsByStatus(currentEndpoint),
     {
       revalidateOnFocus: false,
-      keepPreviousData: true, // Keep previous data while loading new data
+      keepPreviousData: true,
     }
   );
-
-  console.log(data);
 
   return (
     <div>
       <TabsContainer value={value} className=" container mx-auto mt-4">
         <div className="flex items-center justify-between">
-          <TabList
-            onChange={handleTabChange}
-            ariaLabel="logs tabs"
-            box={false}
-          >
-
+          <TabList onChange={handleTabChange} ariaLabel="logs tabs" box={false}>
             <Tab
               label={`All (${countData?.data?.all})`}
               value="0"
@@ -96,7 +90,7 @@ export default function LogsContainer() {
               onChange={handleTabChange}
               selectedTabValue={value}
             />
-                <Tab
+            <Tab
               label={`Resource Request (${countData?.data?.resourceRequest})`}
               value="5"
               onChange={handleTabChange}
@@ -106,7 +100,7 @@ export default function LogsContainer() {
         </div>
 
         <div className="mt-1">
-        <TabPanel value="0" currentValue={value}>
+          <TabPanel value="0" currentValue={value}>
             <EmailLogsTable
               logs={data || { data: [] }}
               isLoading={isLoading}
@@ -138,11 +132,8 @@ export default function LogsContainer() {
               recipientStatus={recipientStatus}
               tabValue={value}
               setSearch={setSearchQuery}
-
-
             />
           </TabPanel>
-
           <TabPanel value="2" currentValue={value}>
             <EmailLogsTable
               logs={data || { data: [] }}
@@ -158,10 +149,8 @@ export default function LogsContainer() {
               recipientStatus={recipientStatus}
               tabValue={value}
               setSearch={setSearchQuery}
-
             />
           </TabPanel>
-
           <TabPanel value="3" currentValue={value}>
             <EmailLogsTable
               logs={data || { data: [] }}
@@ -177,10 +166,8 @@ export default function LogsContainer() {
               recipientStatus={recipientStatus}
               tabValue={value}
               setSearch={setSearchQuery}
-
             />
           </TabPanel>
-
           <TabPanel value="4" currentValue={value}>
             <EmailLogsTable
               logs={data || { data: [] }}
@@ -196,10 +183,8 @@ export default function LogsContainer() {
               recipientStatus={recipientStatus}
               tabValue={value}
               setSearch={setSearchQuery}
-
             />
           </TabPanel>
-
           <TabPanel value="5" currentValue={value}>
             <EmailLogsTable
               logs={data || { data: [] }}
@@ -215,9 +200,9 @@ export default function LogsContainer() {
               recipientStatus={recipientStatus}
               tabValue={value}
               setSearch={setSearchQuery}
-
             />
-          </TabPanel>        </div>
+          </TabPanel>{" "}
+        </div>
       </TabsContainer>
     </div>
   );

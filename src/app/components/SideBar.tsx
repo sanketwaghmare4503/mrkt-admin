@@ -3,10 +3,9 @@ import { Button, Divider, Sidebar } from "@atomos_tech/genesis";
 import React, { useState } from "react";
 import {
 
-  RiFileList3Line,
+  RiArticleLine,
   RiLogoutBoxRLine,
-  RiMailSendLine,
-  RiNewsLine,
+
  
 
 } from "@remixicon/react";
@@ -20,7 +19,7 @@ const navItem = [
       {
         label: "Logs",
         href: "/logs",
-        icon: <RiNewsLine size={18} />, 
+        icon: <RiArticleLine size={18} />, 
       },
       
     ],

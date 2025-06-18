@@ -18,7 +18,7 @@ export const EVENT_TYPES: Record<string, string> = {
     "2": "bookDemo",
     "3": "requestCall",
     "4": "bookDemoLead",
-    "5":"resourceRequest"
+    "5": "resourceRequest"
   };
 
   

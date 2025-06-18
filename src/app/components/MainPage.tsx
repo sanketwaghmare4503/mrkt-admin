@@ -18,7 +18,7 @@ export function MainPage() {
           Welcome {userData.firstName} to the Admin Panel
         </h1>
         <p className="mt-2 text-gray-600 text-sm">
-          Manage your application’s data, monitor performance, and access all administrative tools from this dashboard.
+          {"Manage your application’s data, monitor performance, and access all administrative tools from this dashboard."}
         </p>
 
         <button

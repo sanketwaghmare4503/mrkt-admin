@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   creator: "Mirats Insights",
 };
 
-const GlobalContext = dynamic(() => import("./_context/GlobalContext"), { ssr: false });
+const GlobalContext = dynamic(() => import("./_context/GlobalContext"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
@@ -33,9 +35,9 @@ export default function RootLayout({
       >
         <GlobalContext>
           <NoticeProvider>
-        <LayoutWrapper>{children}</LayoutWrapper>
-        </NoticeProvider>
-      </GlobalContext>
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </NoticeProvider>
+        </GlobalContext>
       </body>
     </html>
   );
