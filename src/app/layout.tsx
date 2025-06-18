@@ -10,9 +10,9 @@ import { NoticeProvider } from "./_context/NoticeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mirats Mail",
+  title: "Mirats Mail Log Service",
   description: "Mirats Mail Management System",
-  keywords: ["email", "template", "bulk mail", "Mirats", "mail management"],
+  keywords: ["email","Logs", "Mirats", "mail management"],
   creator: "Mirats Insights",
 };
 
